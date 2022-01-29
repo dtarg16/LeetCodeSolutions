@@ -10,13 +10,22 @@ class Solution(object):
         :type val: int
         :rtype: ListNode
         """
-        if head is None:
-            return head
+        curr, prev = head, None
+        
+        while curr:
+            if curr.val == val:
+                # need to delete current node
+                if curr == head:
+                    head = head.next 
+                    curr = head
+                else:
+                    curr = curr.next
+                    prev.next = curr
 
-        rest = self.removeElements(head.next, val)
-        if head.val != val:
-            head.next = rest
-        else:
-            head = rest
+            else:
+                # go next
+                prev = curr
+                curr = curr.next
+
         return head
         
