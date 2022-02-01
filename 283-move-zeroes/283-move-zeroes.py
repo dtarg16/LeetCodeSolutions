@@ -4,19 +4,10 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         
-        i = 0
-        first_zero = 0
-        first_non_zero = 0
-        while True:
-            while nums[first_zero] != 0:
-                first_zero += 1
-                if first_zero == len(nums):
-                    return 
-                
-            while nums[first_non_zero] == 0 or first_non_zero < first_zero:
-                first_non_zero += 1
-                if first_non_zero == len(nums):
-                    return 
-            
-            nums[first_zero], nums[first_non_zero] = nums[first_non_zero], nums[first_zero]
+        counter = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                counter += 1
+            elif counter > 0:
+                nums[i - counter], nums[i] = nums[i], 0
             
