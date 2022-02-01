@@ -1,7 +1,18 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
+        # Moore's voting algo
         
-        nums.sort()
-        n = len(nums)
-        return nums[int(n/2)]
+        candidate = None
+        counter = 0
+        for num in nums:
+            if counter == 0:
+                candidate = num
+                counter += 1
+            else:
+                if num == candidate:
+                    counter += 1
+                else:
+                    counter -= 1
+                    
+        return candidate
             
