@@ -7,9 +7,14 @@
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
         if root1 and root2:
-            root = TreeNode(root1.val + root2.val)
-            root.left = self.mergeTrees(root1.left, root2.left)
-            root.right = self.mergeTrees(root1.right, root2.right)
-            return root
+            root1.val += root2.val
+            root1.left = self.mergeTrees(root1.left, root2.left)
+            root1.right = self.mergeTrees(root1.right, root2.right)
+            
         else:
-            return root1 or root2
+            if root1:
+                return root1
+            if root2:
+                return root2
+        
+        return root1
