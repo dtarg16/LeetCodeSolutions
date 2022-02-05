@@ -1,4 +1,4 @@
-# Definition for singly-linked list.
+# Definition for singly-linked https://leetcode.com/problemset/all/list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
@@ -32,7 +32,7 @@ class Solution:
     
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if len(lists) == 0:
-            return
+            return None
         pq = PQ()
 
         for i in range(len(lists)):
@@ -40,10 +40,10 @@ class Solution:
             if head:
                 pq.put(head.val, head)
         
-        
         head = pq.get()
         if not head:
             return None
+        
         pointer = head
         if head.next:
             pq.put(head.next.val, head.next)
