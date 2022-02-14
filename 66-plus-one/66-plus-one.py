@@ -6,7 +6,7 @@ class Solution:
             digits[index] = 0
             index -= 1
         
-        if(index < 0):
+        if index < 0:
             digits = [1] + digits
         else:
             digits[index] += 1
