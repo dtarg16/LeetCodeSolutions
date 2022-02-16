@@ -4,7 +4,7 @@ class Solution:
         pos = 0
         ans = 0
         count = 0
-        vowel = "aeiou";
+        vowel = 'aeiou'
         
         for i in range(n):
             ch = word[i]
