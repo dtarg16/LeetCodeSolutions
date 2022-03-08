@@ -1,15 +1,11 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
 
-class Solution(object):
-    def hasCycle(self, head):
-        """
-        :type head: ListNode
-        :rtype: bool
-        """
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
         node1 = head
         node2 = head
         while node2 is not None and node2.next is not None:
@@ -18,4 +14,3 @@ class Solution(object):
             if node1 == node2:
                 return True
         return False
-        
