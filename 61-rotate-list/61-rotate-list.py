@@ -52,7 +52,7 @@ class Solution:
             return head
         n = length(head)
         k = k % n
-        if n == 0 or k == 0 or n == k:
+        if k == 0:
             return head
         head = reverse_range(head, 0, n - 1)
         head = reverse_range(head, 0, k - 1)
