@@ -3,8 +3,8 @@ class Solution:
         
         dic = {}
         
-        res = 0;
-        mod = 1000000007;
+        res = 0
+        mod = 1000000007
         for i in range(len(arr)):
             res = (res + dic.get(target - arr[i], 0)) % mod
             
