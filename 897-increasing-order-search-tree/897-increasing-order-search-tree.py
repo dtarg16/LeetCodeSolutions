@@ -6,25 +6,22 @@
 #         self.right = right
 class Solution:
     
-    def rec(self, root):
-        if not root:
-            return None
-        
-        left = self.rec(root.left)
-        self.arr.append(root.val)
-        right = self.rec(root.right)
-        
-        
+    head, tmp = None, None
+    
     def increasingBST(self, root: TreeNode) -> TreeNode:
         if not root:
-            return root
-        self.arr = []
-        self.rec(root)
-        head = TreeNode(self.arr[0])
-        tmp = head
-        for i in range(1, len(self.arr)):
-            tmp.right = TreeNode(self.arr[i])
-            tmp = tmp.right
-        return head
+            return
         
-    
+        self.increasingBST(root.left)
+        if not self.head:
+            self.head = root
+            
+        if self.tmp:
+            root.left = None
+            self.tmp.right = root
+      
+        self.tmp = root
+
+        self.increasingBST(root.right)
+        
+        return self.head
