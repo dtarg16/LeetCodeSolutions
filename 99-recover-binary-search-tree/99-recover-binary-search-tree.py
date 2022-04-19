@@ -9,18 +9,21 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        self.prev, self.first, self.second = None, None, None
+        self.prev, self.first, self.second = TreeNode(-pow(2, 31)), None, None
         def rec(root):
             if not root:
                 return
             
             rec(root.left)
-            if self.prev and self.prev.val > root.val:
-                if not self.first:
-                    self.first = self.prev
-                self.second = root
                 
+            if self.first is None and self.prev.val > root.val:
+                self.first = self.prev
+        
+            if self.first and self.prev.val > root.val:
+                self.second = root
+                             
             self.prev = root
+            
             rec(root.right)
         
         rec(root)
