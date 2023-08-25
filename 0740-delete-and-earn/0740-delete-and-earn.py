@@ -7,9 +7,19 @@ class Solution:
         for n in nums:
             freq[n] += n
 
-        dp = [0] * len(freq)
-        dp[1] = freq[1]
-        for i in range(2, len(freq)):
-            dp[i] = max(freq[i] + dp[i-2], dp[i-1])
 
-        return dp[len(freq)-1]
+        def dp(nums):
+            memo=[-1 for _ in range(len(nums))]
+            def rec(i):
+                if i<0:
+                    return 0
+                
+                if memo[i] >= 0:
+                    return  memo[i]
+
+                memo[i]=max(rec(i-2) + nums[i], rec(i-1))
+                return memo[i]
+            
+            return rec(len(nums)-1)
+        
+        return dp(freq)
