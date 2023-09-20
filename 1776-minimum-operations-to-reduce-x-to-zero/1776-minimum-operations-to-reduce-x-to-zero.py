@@ -1,18 +1,18 @@
 class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
-        target, n = sum(nums) - x, len(nums)
+        ans = -float("inf")
+        cumsum = [0] + list(accumulate(nums))
+        dic = {c:i for i,c in enumerate(cumsum)}
+        goal = cumsum[-1] - x
+
+        if goal < 0: 
+            return -1
+
+        for num in dic:
+            if num + goal in dic:
+                ans = max(ans, dic[num + goal] - dic[num])
         
-        if target == 0:
-            return n
+        if ans != -float("inf"):
+            return len(nums) - ans
         
-        max_len = cur_sum = left = 0
-        
-        for right, val in enumerate(nums):
-            cur_sum += val
-            while left <= right and cur_sum > target:
-                cur_sum -= nums[left]
-                left += 1
-            if cur_sum == target:
-                max_len = max(max_len, right - left + 1)
-        
-        return n - max_len if max_len else -1
+        return -1
