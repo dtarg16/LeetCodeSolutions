@@ -1,13 +1,10 @@
 class Solution:
     def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
-        tower = [[0] * (i + 1) for i in range(query_row + 1)]
-        tower[0][0] = poured
-
-        for row in range(query_row):
-            for glass in range(len(tower[row])):
-                excess = (tower[row][glass] - 1) / 2.0
-                if excess > 0:
-                    tower[row + 1][glass] += excess
-                    tower[row + 1][glass + 1] += excess
-
-        return min(1.0, tower[query_row][query_glass])
+        row_glass = [[0] * 101 for i in range(101)]
+        row_glass[0][0] = poured
+        for i in range(query_row):
+            for j in range(100):
+                rem = max(row_glass[i][j] - 1, 0)
+                row_glass[i+1][j] += rem / 2
+                row_glass[i+1][j+1] += rem / 2
+        return min(row_glass[query_row][query_glass], 1)
