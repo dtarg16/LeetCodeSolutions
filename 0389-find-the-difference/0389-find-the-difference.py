@@ -1,7 +1,5 @@
+from functools import reduce
+
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        result = 0
-        for char in s + t:
-            result ^= ord(char)
-        return chr(result)
-        
+        return chr(reduce(lambda a, b: a ^ ord(b), list(s+t), 0))
