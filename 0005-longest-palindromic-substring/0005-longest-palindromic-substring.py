@@ -8,12 +8,14 @@ class Solution:
 
         longest = ""
         for i in range(len(s)):
-            palindrome1 = expand(i, i)
-            palindrome2 = expand(i, i + 1)
+            longest = max(expand(i, i), expand(i, i + 1), longest, key=lambda x: len(x))
 
-            if len(palindrome1) > len(longest):
-                longest = palindrome1
-            if len(palindrome2) > len(longest):
-                longest = palindrome2
+            # palindrome1 = expand(i, i)
+            # palindrome2 = expand(i, i + 1)
+
+            # if len(palindrome1) > len(longest):
+            #     longest = palindrome1
+            # if len(palindrome2) > len(longest):
+            #     longest = palindrome2
 
         return longest
