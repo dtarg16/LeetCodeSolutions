@@ -1,15 +1,15 @@
 class Solution:
     def canSortArray(self, nums: List[int]) -> bool:
-        def num_set_bits(num):
-            return sum([int(bit) for bit in bin(num)[2:]])
-
-        left, right = 0, 0
-        while right < len(nums):
-            if num_set_bits(nums[left]) != num_set_bits(nums[right]):
-                nums[left:right] = sorted(nums[left:right])
-                left = right
+        previous_max = current_min = current_max = previous_count = 0
+        for num in nums:
+            current_count = num.bit_count()
+            if previous_count == current_count:
+                current_min = min(current_min, num)
+                current_max = max(current_max, num)
+            elif current_min < previous_max:
+                return False
             else:
-                right += 1
-
-        nums[left:right] = sorted(nums[left:right])
-        return list(sorted(nums)) == nums
+                previous_max = current_max
+                current_min = current_max = num
+                previous_count = current_count
+        return current_min >= previous_max
